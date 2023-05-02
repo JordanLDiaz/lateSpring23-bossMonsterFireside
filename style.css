@@ -1,0 +1,23 @@
+body {
+  background-image: url('./assets/bg-forest.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.boss {
+  height: 30vh;
+  max-width: 50vw;
+  transform: translateY(-5rem);
+}
+
+.hero {
+  max-height: 45vh;
+  max-width: 40vw;
+}
+
+.sidekick {
+  max-height: 20vh;
+  transform: rotateY(180deg);
+}
