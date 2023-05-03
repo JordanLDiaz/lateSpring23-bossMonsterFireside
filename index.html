@@ -33,38 +33,73 @@
 <body class="container-fluid">
   <main class="row">
     <div class="col-12">
-      <!-- STUB hero and sidekicks -->
+      <!-- STUB hero and sidekicks templates -->
       <div class="row text-light">
-        <div class="col-4" id="hero">
-          <img class="img-fluid hero" src="assets/superCat.gif">
+        <div class="col-4 text-light" id="hero">
+          <!-- <img class="img-fluid hero" src="assets/superCat.gif">
           <h5 class="text-center">SuperCat</h5>
+          <p class="text-center">Health: <span>100</span></p> -->
         </div>
-        <div class="col-8 d-flex mt-5 justify-content-between">
-          <div>
-            <img class="img-fluid sidekick" src="assets/kneady-boy.gif">
-            <h5 class="text-center">Kneady Boy</h5>
+        <div class="col-8 d-flex mt-5 justify-content-between" id="sidekicks">
+          <!-- TODO comment these back in when working on sidekicks -->
+          <div class="text-center text-light">
+            <img class="img-fluid sidekick" src="assets/kneady-boy2.gif">
+            <h5>Kneady Boy</h5>
+            <p>Health: <span>100</span></p>
           </div>
-          <div>
+          <div class="text-center text-light">
             <img class="img-fluid sidekick" src="assets/major-sideeye.gif">
-            <h5 class="text-center">Major SideEye</h5>
+            <h5>Major SideEye</h5>
+            <p>Health: <span>100</span></p>
           </div>
-          <div>
-            <img class="img-fluid sidekick" src="assets/lazer-kitty.gif">
-            <h5 class="text-center">Lazer Kitty</h5>
+          <div class="text-center text-light">
+            <img class="img-fluid sidekick" src="assets/lazer-kitty2.gif">
+            <h5>Lazer Kitty</h5>
+            <p>Health: <span>100</span></p>
           </div>
-          <div>
+          <div class="text-center text-light">
             <img class="img-fluid sidekick" src="assets/rock'n'gato.gif">
-            <h5 class="text-center">Rock'n'Gato</h5>
+            <h5>Rock'n'Gato</h5>
+            <p>Health: <span>100</span></p>
           </div>
         </div>
       </div>
 
-      <!-- STUB boss -->
+      <!-- STUB bossTemplate -->
       <div class="row justify-content-center">
-        <div class="col-6 text-center" id="boss">
-          <img class="img-fluid boss" src="assets/squirrel-mafia.gif">
+        <div class="col-6 text-center text-light boss" id="boss">
+          <!-- <img class="img-fluid" src="assets/squirrel-mafia.gif">
+          <h4>Squirrel Mafia</h4>
+          <h5>Level: <span>1</span></h5>
+          <p>Health: <span>100</span></p> -->
         </div>
+      </div>
 
+      <!-- STUB Shop and credits-->
+      <div class="row justify-content-center m-2">
+        <div class="col-12 shop-card rounded p-2">
+          <div class="row text-center">
+            <h3>Coins: <span id="coin">0</span></h3>
+          </div>
+          <div class="row justify-content-between m-2">
+            <button class="col-2 btn btn-success rounded ">
+              <h4>Kneady Boy</h4>
+              <p>100 🪙</p>
+            </button>
+            <button class="col-2 btn btn-success rounded">
+              <h4>Major SideEye</h4>
+              <p>200 🪙</p>
+            </button>
+            <button class="col-2 btn btn-success rounded">
+              <h4>Lazer Kitty</h4>
+              <p>500 🪙</p>
+            </button>
+            <button class="col-2 btn btn-success rounded">
+              <h4>Rock'n'Gato</h4>
+              <p>1000 🪙</p>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </main>
