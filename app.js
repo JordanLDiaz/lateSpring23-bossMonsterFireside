@@ -28,26 +28,26 @@ const sidekicks = [
   },
   {
     name: 'Major SideEye',
-    type: 'healing',
+    type: 'damage',
     image: "assets/major-sideeye.gif",
     cost: 200,
-    value: 10,
-    isPurchased: false
-  },
-  {
-    name: 'Lazer Kitty',
-    type: 'damage',
-    image: "assets/lazer-kitty2.gif",
-    cost: 500,
     value: 15,
     isPurchased: false
   },
   {
-    name: "Rock n Gato",
+    name: 'Lazer Kitty',
     type: 'healing',
+    image: "assets/lazer-kitty2.gif",
+    cost: 500,
+    value: 20,
+    isPurchased: false
+  },
+  {
+    name: "Rock n Gato",
+    type: 'damage',
     image: "assets/rock'n'gato.gif",
     cost: 1000,
-    value: 20,
+    value: 25,
     isPurchased: false
   },
 ]
@@ -143,7 +143,7 @@ function levelUpBoss() {
   // increase boss level by 1
   boss.level++
   // increase boss damage by current damage * 2
-  boss.damage = boss.damage * 2
+  boss.damage = boss.level * 2
   // reset boss health and increase it by level * 100
   boss.health = boss.level * 100
 }
@@ -161,7 +161,7 @@ function bossAttacks() {
   drawHeroStats()
 }
 
-setInterval(bossAttacks, 5000)
+setInterval(bossAttacks, 3000)
 
 
 
@@ -286,7 +286,7 @@ function sideKicksHelp() {
   })
 }
 
-setInterval(sideKicksHelp, 4000)
+setInterval(sideKicksHelp, 3000)
 
 // SECTION call draw functions on page load
 drawHero()
