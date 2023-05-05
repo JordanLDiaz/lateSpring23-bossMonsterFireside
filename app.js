@@ -31,7 +31,7 @@ const sidekicks = [
     type: 'damage',
     image: "assets/major-sideeye.gif",
     cost: 200,
-    value: 15,
+    value: 10,
     isPurchased: false
   },
   {
@@ -39,7 +39,7 @@ const sidekicks = [
     type: 'healing',
     image: "assets/lazer-kitty2.gif",
     cost: 500,
-    value: 20,
+    value: 15,
     isPurchased: false
   },
   {
@@ -85,15 +85,22 @@ function drawBoss() {
 }
 
 function drawBossStats() {
+  // This is a check that ensures bosses health doesn't dip below 0
+  if (boss.health < 0) {
+    boss.health = 0
+  }
+
   let bossStatsTemplate = ''
   bossStatsTemplate += `
-<h5>Level: <span>${boss.level}</span></h5>
-<p>Health: <span> ${boss.health} </span></p>
-<div class="progress" role="progressbar" aria-label="Danger striped progress bar"
-  aria-valuenow="${boss.health / boss.maxHealth * 100}" aria-valuemin="0" aria-valuemax="${boss.maxHealth}">
-  <div class="progress-bar progress-bar-striped bg-danger"
-    style="width: ${boss.health / boss.maxHealth * 100}%"></div>
-</div>
+  <h5>Level: <span>${boss.level}</span></h5>
+  <div class="progress" role="progressbar" aria-label="Danger striped progress bar" aria-valuenow="${boss.health / boss.maxHealth * 100}"
+    aria-valuemin="0" aria-valuemax="${boss.maxHealth}">
+    <div class="progress-bar progress-bar-striped bg-danger" style="width:${boss.health / boss.maxHealth * 100}%"></div>
+  </div>
+  <div class="d-flex justify-content-evenly text-center">
+  <p>Health: <span>${boss.health}</span></p>
+  <p>Damage: <span>${boss.damage}</span></p>
+  </div>
 `
   // @ts-ignore
   document.getElementById('boss-stats').innerHTML = bossStatsTemplate
@@ -133,7 +140,7 @@ function attackBoss() {
     hero.health = 100
     drawHeroStats()
     // give hero coins for defeating boss, redraw coins
-    hero.coin += 100
+    hero.coin = hero.coin + 100
     drawCoins()
   }
   drawBossStats()
@@ -161,7 +168,7 @@ function bossAttacks() {
   drawHeroStats()
 }
 
-setInterval(bossAttacks, 3000)
+setInterval(bossAttacks, 5000)
 
 
 
@@ -260,9 +267,9 @@ function buySidekicks(sidekickName) {
   // @ts-ignore
   if (hero.coin >= purchasedSidekick.cost && !purchasedSidekick.isPurchased) {
     // @ts-ignore
-    purchasedSidekick.isPurchased = true
-    // @ts-ignore
     hero.coin -= purchasedSidekick.cost
+    // @ts-ignore
+    purchasedSidekick.isPurchased = true
     drawCoins()
     drawSidekicks()
   } else {
@@ -274,7 +281,18 @@ function buySidekicks(sidekickName) {
 // This one will look a bit different than our kneadyBoyAttacks because we first need to check if a sidekick has been purchased (remember this changes to true in our buySidekicks function), then we need to identify if the sidekick purchased is type damage or healing, which will determine the effect it has on the game
 function sideKicksHelp() {
   sidekicks.forEach(sidekick => {
-    if (sidekick.isPurchased) {
+    if (boss.health <= 0) {
+      boss.health = 0
+      window.alert('You defeated Rat-a-tat-tat! Play again?')
+      hero.coin = hero.coin += 100
+      drawCoins()
+      hero.damage += 5
+      hero.health = 100
+      drawHeroStats()
+      levelUpBoss()
+      drawBossStats()
+    }
+    if (sidekick.isPurchased && boss.health > 0) {
       if (sidekick.type == 'damage') {
         boss.health -= sidekick.value
         drawBossStats()
@@ -286,6 +304,7 @@ function sideKicksHelp() {
   })
 }
 
+// why don't we invoke function in setInterval? Loop?
 setInterval(sideKicksHelp, 3000)
 
 // SECTION call draw functions on page load
